@@ -80,6 +80,17 @@ app.post("/api/auth/login", (req, res) => {
   });
 });
 
+app.get("/api/users", (req, res) => {
+  db.all(`SELECT * FROM users`, [], (err, users) => {
+    if (err) {
+      console.error(err);
+      return res.status(500).json({ error: "Internal server error" });
+    }
+    
+    res.status(200).json(users);
+  });
+});
+
 // Edit user profile (only accessible by the user or admin)
 app.put("/api/users/:id/edit-profile/", (req, res) => {
   const { email, password } = req.body;

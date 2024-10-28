@@ -66,7 +66,7 @@
         <p class="text-sm text-gray-600">
           Already have an account?
           <a
-            href="login.html"
+            href="index.html"
             class="font-medium text-primary hover:text-primary/80"
             >Sign in</a
           >
@@ -108,12 +108,17 @@
             },
             body: JSON.stringify({ email, password, role }),
           });
-          const data = await response.json();
-          alert("Sucessful");
-          console.log("Register Response:", data);
+
+          const data = await response.json()
+
+    if(response.status===201){
+            alert("Registration Successful")
+            window.location.href = "/index.html"
+          }
+
+        
         } catch (error) {
-          console.error("Error:", error);
-          alert("Error");
+            alert("Error ");
         }
       }
     </script>
